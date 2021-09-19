@@ -74,4 +74,77 @@ app.get('/list_payment', (req, res) => {
     });
   }
 });
+
+
+
+app.post('/payment/status/direject_ac', (req, res) => {
+
+  if(typeof(req.body.id_payment) !== "number"){
+    return res.send({
+      status: 400,
+      message: 'payment id harus integers'
+    })
+  }
+  if (req.body.id_payment) {
+    return res.send({
+      status: 200,
+      message: 'success',
+      data: [
+        {
+          id_unit: 1,
+          id_payment: 2,
+          diminta_oleh: 'Asep Sunandar',
+          keperluan: 'SPP Juli 2020',
+          tanggal_pembayaran_aktual: '10/07/2021',
+          jumlah_payment: 1000000,
+          terbilang: 'Satu juta rupiah',
+          nama_rek_penerima: 'MD. Mubarokhul Huda',
+          no_rek_penerima: '15009757050',
+          request_terkirim: '2021-07-25 08:59:59',
+          status: 1,
+        },
+      ],
+    });
+  } else {
+   return res.send({
+      status: 400,
+      message: 'payment id tidak di temukan',
+    });
+  }
+});
+
+app.post('/payment/status/diteruskan', (req, res) => {
+  if(typeof(req.body.id_payment) !== "number"){
+    return res.send({
+      status: 400,
+      message: 'payment id harus integers'
+    })
+  }
+  if (req.body.id_payment) {
+    res.send({
+      status: 200,
+      message: 'success',
+      data: [
+        {
+          id_unit: 1,
+          id_payment: 2,
+          diminta_oleh: 'Asep Sunandar',
+          keperluan: 'SPP Juli 2020',
+          tanggal_pembayaran_aktual: '10/07/2021',
+          jumlah_payment: 1000000,
+          terbilang: 'Satu juta rupiah',
+          nama_rek_penerima: 'MD. Mubarokhul Huda',
+          no_rek_penerima: '15009757050',
+          request_terkirim: '2021-07-25 08:59:59',
+          status: 1,
+        },
+      ],
+    });
+  } else {
+    res.send({
+      status: 400,
+      message: 'payment id tidak di temukan',
+    });
+  }
+});
 app.listen(PORT);

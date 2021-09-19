@@ -32,6 +32,26 @@ app.post('/login', (req, res) => {
   }
 });
 
+app.post('payment/create', (req, res) => {
+  res.send({
+    status: 200,
+    message: 'berhasil',
+    data: {
+      id_payment: 2,
+      id_unit: 1,
+      diminta_oleh: 'Asep Sunandar',
+      keperluan: 'SPP Juli 2020',
+      tanggal_pembayaran_aktual: '10/07/2021',
+      jumlah_payment: 1000000,
+      terbilang: 'Satu juta rupiah',
+      nama_rek_penerima: 'MD. Mubarokhul Huda',
+      no_rek_penerima: '15009757050',
+      request_terkirim: '2021-07-25 08:59:59',
+      status: 1,
+    },
+  });
+});
+
 app.get('/list_payment', (req, res) => {
   console.log(req.query.id_unit === '1');
   if (req.query.id_unit === '1') {
@@ -53,7 +73,7 @@ app.get('/list_payment', (req, res) => {
           status: 1,
         },
         {
-          id_unit: 1,
+          id_unit: 2,
           id_payment: 2,
           diminta_oleh: 'Agung Fir',
           keperluan: 'SPP Juli 2020',
@@ -74,4 +94,60 @@ app.get('/list_payment', (req, res) => {
     });
   }
 });
-app.listen(PORT);
+
+app.get('/payment/2', (req, res) => {
+  res.send({
+    status: 200,
+    message: 'berhasil',
+    data: {
+      id_unit: 1,
+      id_payment: 2,
+      diminta_oleh: 'Asep Sunandar',
+      keperluan: 'SPP Juli 2020',
+      tanggal_pembayaran_aktual: '10/07/2021',
+      jumlah_payment: 1000000,
+      terbilang: 'Satu juta rupiah',
+      nama_rek_penerima: 'MD. Mubarokhul Huda',
+      no_rek_penerima: '15009757050',
+      request_terkirim: '2021-07-25 08:59:59',
+      status: 1,
+    },
+  });
+});
+
+app.post('/akun/create', (req, res) => {
+  res.send({
+    status: 200,
+    message: 'berhasil',
+    data: {
+      id_user: 4,
+      nama: 'Dinda Eka',
+      role: 2,
+      username: '10001',
+      password: 'cek10001',
+    },
+  });
+});
+
+app.get('/list_akun', (req, res) => {
+  res.send({
+    status: 200,
+    message: 'berhasil',
+    data: [
+      {
+        id_user: 4,
+        nama: 'Dinda Eka',
+        role: 2,
+        username: '10001',
+      },
+      {
+        id_user: 4,
+        nama: 'Dinda Eka',
+        role: 2,
+        username: '10001',
+      },
+    ],
+  });
+});
+
+app.listen(3001);

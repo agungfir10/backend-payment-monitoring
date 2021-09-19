@@ -6,6 +6,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // parse application/json
 app.use(bodyParser.json());
+app.get('/', (req, res) => {
+  res.send({
+    status: 200,
+    message: 'success',
+  });
+});
 app.post('/login', (req, res) => {
   if (req.body.username === 'bambang@bri.co.id') {
     if (req.body.password === 'bambang123') {
@@ -65,4 +71,4 @@ app.get('/list_payment', (req, res) => {
     });
   }
 });
-app.listen(3001);
+app.listen(3000);

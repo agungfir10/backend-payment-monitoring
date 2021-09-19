@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const PORT = process.env.PORT || 3000;
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -71,4 +72,4 @@ app.get('/list_payment', (req, res) => {
     });
   }
 });
-app.listen(3000);
+app.listen(PORT);

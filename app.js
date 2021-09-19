@@ -78,8 +78,15 @@ app.get('/list_payment', (req, res) => {
 
 
 app.post('/payment/status/direject_ac', (req, res) => {
+
+  if(typeof(req.body.id_payment) !== "number"){
+    return res.send({
+      status: 400,
+      message: 'payment id harus integers'
+    })
+  }
   if (req.body.id_payment) {
-    res.send({
+    return res.send({
       status: 200,
       message: 'success',
       data: [
@@ -99,7 +106,7 @@ app.post('/payment/status/direject_ac', (req, res) => {
       ],
     });
   } else {
-    res.send({
+   return res.send({
       status: 400,
       message: 'payment id tidak di temukan',
     });
@@ -107,6 +114,12 @@ app.post('/payment/status/direject_ac', (req, res) => {
 });
 
 app.post('/payment/status/diteruskan', (req, res) => {
+  if(typeof(req.body.id_payment) !== "number"){
+    return res.send({
+      status: 400,
+      message: 'payment id harus integers'
+    })
+  }
   if (req.body.id_payment) {
     res.send({
       status: 200,

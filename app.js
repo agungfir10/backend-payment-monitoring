@@ -4,17 +4,17 @@ const bcrypt = require('bcrypt');
 const app = express();
 const bodyParser = require('body-parser');
 var cors = require('cors');
-const dotenv = require('dotenv');
-// get config vars
-dotenv.config();
 
 // access config var
 process.env.TOKEN_SECRET;
 
 const PORT = process.env.PORT || 3000;
 
+const TOKEN_SECRET =
+  'a47d2d38f338535def52568080d0b9cdf4358ca854d577c42bdf857398810e737479d01cb4f63615e1051f4e71c1c1b41f7a6a37f11497439e4726e97627f509';
+
 function generateAccessToken(payload) {
-  return jwt.sign(payload, process.env.TOKEN_SECRET, {
+  return jwt.sign(payload, TOKEN_SECRET, {
     expiresIn: '12h',
   });
 }
@@ -30,7 +30,7 @@ function authenticateToken(req, res, next) {
     response.message = 'Unauthorized';
     res.send(response);
   } else {
-    jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
+    jwt.verify(token, TOKEN_SECRET, (err, user) => {
       if (err) return res.sendStatus(403);
       res.write;
       req.user = user;

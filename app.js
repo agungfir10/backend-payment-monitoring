@@ -121,7 +121,7 @@ app.use(cors());
 // parse application/json
 app.use(bodyParser.json());
 
-app.get('/', authenticateToken, (req, res) => {
+app.get('/', (req, res) => {
   res.send({
     status: 200,
     message: 'success',

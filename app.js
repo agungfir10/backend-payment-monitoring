@@ -466,4 +466,82 @@ app.delete('/akun/:id_user', authenticateToken, (req, res) => {
   delete response.data;
 });
 
+
+app.post('/generate_otp', (req, res) => {
+  const username = req.body.username;
+
+
+  if (username !== undefined) {
+
+    response.status = 200;
+    response.message = 'Success updated';
+    response['kode']=1234
+
+
+
+    
+    res.send(response);
+  } else {
+    response.status = 400;
+    response.message = 'Payment not found';
+    res.send(response);
+  }
+  delete response.data;
+});
+
+app.post('/verif_otp', (req, res) => {
+  const kode = req.body.kode;
+
+
+  if (kode !== undefined) {
+
+    response.status = 200;
+    response.message = 'Success updated';
+  
+
+
+
+    
+    res.send(response);
+  } else {
+    response.status = 400;
+    response.message = 'Payment not found';
+    res.send(response);
+  }
+  delete response.data;
+});
+
+app.post('/reset_pass', (req, res) => {
+  const pass_baru = req.body.pass_baru;
+  const konfirm_pass_baru = req.body.konfirm_pass_baru;
+
+
+  if (pass_baru !== undefined && konfirm_pass_baru !== undefined) {
+
+    if(pass_baru == konfirm_pass_baru){
+      response.status = 200;
+      response.message = 'Success updated';
+    res.send(response);
+
+    }
+    else {
+      response.status = 400;
+      response.message = 'password tidak sama';
+    res.send(response);
+    }
+
+    
+
+
+    
+   
+  } else {
+    response.status = 400;
+    response.message = 'Payment not found';
+    res.send(response);
+  }
+  delete response.data;
+});
+
+
 app.listen(PORT);
